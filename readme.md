@@ -1,2 +1,14 @@
-# Computer Graphics and Multimedia Lab
+# CGM_LAB - Computer Graphics and Multimedia Lab Repositorya
 
+## 📌 Repository Information
+- **Course**: CSE 358: Computer Graphics and Multimedia
+- **Semester**: Spring 2026
+- **Student Name**: Azhar
+- **Student ID**: 043*********1120
+- **Section**: 5B2
+
+### Repo Link
+`https://github.com/4xrhd/CGM_LAB`
+
+### ⚖️ Academic Integrity Statement
+This work is original and created solely for educational purposes as part of CSE 358 coursework. All code has been developed and tested on my personal computer as evidenced by the terminal screenshot.
