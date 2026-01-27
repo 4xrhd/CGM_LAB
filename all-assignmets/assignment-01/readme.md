@@ -19,7 +19,7 @@ Create a cyan-colored OpenGL window displaying the student's full name as the wi
 - **Window Properties**:
 - Size: 800x600 pixels
 - Color: Cyan (0.0, 1.0, 1.0)
-- Title: "Azhar"
+- Title: "Azhar Uddin"
 - **Keyboard Interaction**: Press 'A' or 'a' to exit
 - **Platform**: Cross-platform (Windows/Linux/macOS)
 
@@ -41,22 +41,23 @@ CGM_LAB/
 
 #### Linux/Mac Compilation
 ```bash
-g++ main.cpp -o lab6b -lGL -lGLU -lglut
-./lab01
+make linux
 ```
 
 #### Windows Compilation (MinGW)
 ```bash
-g++ main.cpp -o lab6b.exe -lopengl32 -lglu32 -lfreeglut
-lab01.exe
+make win
 ```
 
 ### 📸 Screenshot Information
-The screenshot (`output_screenshot.png`) demonstrates:
+The screenshot (`output.png`) demonstrates:
 1. VS Code terminal showing compilation and execution
 2. Cyan OpenGL window with title "Azhar"
 3. Folder structure with Azhar's name
 4. Program running successfully on local machine(Linux)
+
+<img src="output.png">
+
 
 ### 💻 Code Implementation Details
 The program uses:
@@ -75,7 +76,7 @@ The program uses:
 
 
 ### 📅 Submission Details
-- **Assignment**: Lab 6B
+- **Assignment**: Computer Graphics & Multimedia Lab 
 - **Submission Date**: January 25, 2026
 - **Deadline**: January 28, 2025, 8:00 AM
 - **Submission Method**: GitHub repository link and screenshot
