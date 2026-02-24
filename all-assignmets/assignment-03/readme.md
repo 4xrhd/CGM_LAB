@@ -82,6 +82,7 @@ The running application shows:
 - Clean rendering without artifacts
 
 (Refer to attached file: `output.png`)
+<img src="output.png">
 
 ## 💡 Key Implementation Techniques Used
 
@@ -112,8 +113,6 @@ By completing this lab, I practiced and understood:
   - `readme.md`
   - `output.png` (screenshot showing window + title + star)
 
-<img src="output.png">
-
 - **Lab Instructor**: -AC
 - **Deadline**: 25-FEB-2026
 
@@ -121,5 +120,5 @@ Thank you.
 
 Md. Azhar  Uddin Abeer
 0432320005101120
-```
+
 
