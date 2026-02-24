@@ -113,6 +113,7 @@ By completing this lab, I practiced and understood:
   - `output.png` (screenshot showing window + title + star)
 
 <img src="output.png">
+
 - **Lab Instructor**: -AC
 - **Deadline**: 25-FEB-2026
 
