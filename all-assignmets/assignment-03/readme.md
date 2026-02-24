@@ -129,7 +129,7 @@ Through this assignment, I gained practical experience with:
   - `readme.md` (this document)  
   - `output.png` (proof of correct execution)  
 
-**Lab Instructor**: AC  
+**Lab Instructor**: Any Chowdhury- AC  
 **Deadline**: 25 February 2026
 
 Thank you for reviewing my submission.
