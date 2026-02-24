@@ -1,61 +1,72 @@
 
 # Lab 03: Drawing a Cyan Star on Yellow Background
 
-**Course:** Computer Graphics & Multimedia Lab  
-**Assignment No:** 03  
-**Student ID:** 0432320005101120  
-**Name:** Md. Azhar  
-**Submission Date:** February 2026
+**Course**  
+Computer Graphics & Multimedia Lab
 
-## 🎯 Objective
+**Assignment**  
+Lab 03
 
-Create a modern OpenGL application (using GLFW + GLAD) that displays:
+**Student**  
+Name: Md. Azhar Uddin Abeer  
+Student ID: 0432320005101120
 
-- A bright **yellow background**  
-- One **cyan-colored star** constructed only using triangles  
-- Window title shows the full student ID  
-- Pressing the first letter of your name (`A`) closes the window
+**Submission Date**  
+February 2025 – February 2026 (as per announcement)
 
-## ✅ Requirements Checklist
+## Objective
 
-- [x] Window background color: **Yellow** (RGB: 1.0, 1.0, 0.0)  
-- [x] One cyan star drawn using **only triangles** (`GL_TRIANGLES`)  
-- [x] Window title = **0432320005101120**  
-- [x] Press **A** key → window closes  
+Develop a modern OpenGL application using **GLFW** and **GLAD** that:
+
+- Displays a **yellow** window background  
+- Renders exactly **one cyan star** constructed using triangles only  
+- Sets the window title to the full student ID: **0432320005101120**  
+- Closes the window when the user presses the key **`A`** (initial of your name)
+
+## Requirements Fulfilled
+
+- [x] Window background: **Yellow** (RGB: 1.0f, 1.0f, 0.0f, 1.0f)  
+- [x] One **cyan star** (0.0f, 1.0f, 1.0f) drawn using `GL_TRIANGLES` only  
+- [x] Window title: **0432320005101120**  
+- [x] Window closes on pressing **`A`** key  
 - [x] Uses **OpenGL 3.3 Core Profile** + GLFW + GLAD  
-- [x] Clean code structure with meaningful comments  
-- [x] Includes README and screenshot of output
+- [x] Proper VAO / VBO usage  
+- [x] Clean, commented code structure  
+- [x] Includes screenshot (`output.png`)
 
-## 🖥️ Program Specifications
+## Program Specifications
 
-| Property              | Value                              |
-|-----------------------|------------------------------------|
-| Window size           | 800 × 600 pixels                   |
-| Background color      | Yellow (1.0f, 1.0f, 0.0f, 1.0f)   |
-| Window title          | 0432320005101120                   |
-| Star color            | Cyan (0.0f, 1.0f, 1.0f)            |
-| Rendering method      | `glDrawArrays(GL_TRIANGLES, ...)`  |
-| Input handling        | GLFW keyboard callback / polling   |
-| Exit condition        | Press **A** key                    |
-| Graphics API          | OpenGL 3.3 Core Profile            |
+| Property              | Value                                      |
+|-----------------------|--------------------------------------------|
+| Window size           | 800 × 600 pixels                           |
+| Background color      | Yellow (1.0f, 1.0f, 0.0f, 1.0f)           |
+| Star color            | Cyan   (0.0f, 1.0f, 1.0f)                 |
+| Window title          | 0432320005101120                           |
+| Rendering primitive   | `GL_TRIANGLES` via `glDrawArrays`          |
+| Exit key              | `A` (case insensitive in most implementations) |
+| OpenGL version        | 3.3 Core Profile                           |
+| Input method          | `glfwGetKey()` polling                     |
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 assignment-03/
-├── main.cpp       # Main OpenGL program
-├── glad.c         # GLAD loader (generated)
-├── include/       # glad/glad.h, GLFW headers
-├── lib/           # glfw library files (if needed)
-├── readme.md      # This documentation
-└── output.png     # Screenshot of running program
+├── main.cpp          Main program (OpenGL + GLFW + GLAD)
+├── glad.c            GLAD source (generated)
+├── include/          Headers (glad/glad.h, glfw3.h, etc.)
+├── lib/              GLFW library files (if using local build)
+├── build/            Output directory for executable
+├── readme.md         This file
+└── output.png        Screenshot of running program
 ```
 
-## 🛠️ How to Build and Run
+## Build & Run Instructions
 
-### Linux (most common academic environment)
+### Linux (typical university lab environment)
 
 ```bash
+mkdir -p build
+
 g++ -Wall -std=c++17 \
     -I./include \
     main.cpp glad.c \
@@ -68,57 +79,60 @@ g++ -Wall -std=c++17 \
 ### Windows (MinGW / MSYS2)
 
 ```bash
-g++ main.cpp glad.c -o star.exe -Iinclude -Llib -lglfw3 -lopengl32 -lgdi32
+g++ -std=c++17 main.cpp glad.c -o star.exe \
+    -Iinclude -Llib -lglfw3 -lopengl32 -lgdi32
+
 star.exe
 ```
 
-## 📸 Program Output Description
+## Program Output
 
-The running application shows:
+The application displays:
 
-- Window title bar: **0432320005101120**
-- Complete yellow background
-- Centered **cyan star** made of triangles
-- Clean rendering without artifacts
+- Window title: **0432320005101120**  
+- Solid **yellow** background  
+- Centered **cyan star** constructed from triangles  
+- No flickering or rendering artifacts
 
-(Refer to attached file: `output.png`)
-<img src="output.png">
+**Screenshot:**
 
-## 💡 Key Implementation Techniques Used
+![Program Output](output.png)  
+*Screenshot showing the yellow window with cyan star and correct title bar*
 
-- GLFW window and context creation (OpenGL 3.3 Core)
-- GLAD for loading modern OpenGL functions
-- Simple vertex + fragment shaders (cyan hard-coded)
-- Single VAO + VBO to store star vertices
-- Star geometry created using **triangles only** (no lines or strips)
-- Real-time keyboard polling with `glfwGetKey()`
-- Proper resource cleanup (`glDelete…`, `glfwDestroyWindow`, `glfwTerminate`)
+## Key Techniques Implemented
 
-## 📚 Learning Outcomes
+- GLFW window & OpenGL 3.3 Core context creation  
+- GLAD function loading  
+- Minimal vertex & fragment shaders (cyan color hardcoded)  
+- Single VAO + VBO for star geometry  
+- Star shape built entirely from triangles (no `GL_LINES`, no fan/strip shortcuts)  
+- Keyboard state checking with `glfwGetKey(GLFW_KEY_A)`  
+- Clean resource deallocation (`glDeleteProgram`, `glDeleteBuffers`, `glDeleteVertexArrays`, etc.)  
+- `glfwTerminate()` and window destruction on exit
 
-By completing this lab, I practiced and understood:
+## Learning Outcomes
 
-- Setting up modern OpenGL pipeline (3.3+ Core)
-- Writing minimal vertex & fragment shaders
-- Creating and rendering geometry using VBO/VAO
-- Building complex shapes (star) from basic triangles
-- Handling basic window events and keyboard input
-- Organizing a small graphics project properly
+Through this assignment, I gained practical experience with:
 
-## 📌 Submission Information
+- Modern OpenGL setup (core profile, no fixed-function pipeline)  
+- Writing and linking simple GLSL shaders  
+- Vertex data management using VAO/VBO  
+- Constructing complex 2D shapes from basic triangles  
+- Basic real-time keyboard input handling in GLFW  
+- Structuring and documenting a small graphics project
 
-- **Repository**: (link will be provided)
+## Submission Details
+
+- **Repository**: (to be updated with GitHub link)  
 - **Files included**:
-  - `main.cpp`
-  - `readme.md`
-  - `output.png` (screenshot showing window + title + star)
+  - `main.cpp`  
+  - `readme.md` (this document)  
+  - `output.png` (proof of correct execution)  
 
-- **Lab Instructor**: -AC
-- **Deadline**: 25-FEB-2026
+**Lab Instructor**: AC  
+**Deadline**: 25 February 2026
 
-Thank you.
+Thank you for reviewing my submission.
 
-** Md. Azhar  Uddin Abeer **
+Md. Azhar Uddin Abeer  
 0432320005101120
-
-
