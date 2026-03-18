@@ -26,16 +26,16 @@ const char *fragmentShaderSource = "#version 330 core\n"
     "   FragColor = vec4(1.0f, 1.0f, 1.0f, 1.0f);\n"
     "}\n\0";
 
-// function to generate line points using DDA
-// function to generate line points using textbook DDA
-std::vector<float> DDA(float x0, float y0, float x1, float y1)
+// function to generate line points using bresen
+// function to generate line points using textbook bresen
+std::vector<float> bresen(float x0, float y0, float x1, float y1)
 {
     std::vector<float> points;
 
     float dx = x1 - x0;
     float dy = y1 - y0;
     float m = dy / dx;
-    float p = 2 * dy - dx; // initial decision parameter
+    float p0 = 2 * dy - dx; // initial decision parameter
 
     float x = x0;
     float y = y0;
@@ -100,7 +100,7 @@ int main()
 
     // glfw window creation
     // --------------------
-    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "DDA Line Drawing", NULL, NULL);
+    GLFWwindow* window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "bresen Line Drawing", NULL, NULL);
     if (window == NULL)
     {
         std::cout << "Failed to create GLFW window" << std::endl;
@@ -154,13 +154,13 @@ int main()
 
     // set up vertex data (and buffer(s)) and configure vertex attributes
     // ------------------------------------------------------------------
-    // DDA inputs (normalized device coordinates: -1 to 1)
-    float x0 = -0.5f;
-    float y0 = -0.5f;
-    float x1 = 0.5f;
-    float y1 = 0.5f;
+    // bresen inputs (normalized device coordinates: -1 to 1)
+    float x0 = 0.0f;
+    float y0 = 0.4f;
+    float x1 = 8.0f;
+    float y1 = 6.0f;
 
-    std::vector<float> vertices = DDA(x0, y0, x1, y1);
+    std::vector<float> vertices = bresen(x0, y0, x1, y1);
 
     unsigned int VBO, VAO; //VBO = a container for your vertex array data (positions, etc.)
     //VAO = a container for the "rules" about how to read the VBO.
@@ -194,7 +194,7 @@ int main()
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
 
-        // draw DDA points
+        // draw bresen points
         glUseProgram(shaderProgram);
         glBindVertexArray(VAO);
         glPointSize(5.0f); // Make points visible

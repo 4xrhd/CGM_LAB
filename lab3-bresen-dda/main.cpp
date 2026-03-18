@@ -39,7 +39,7 @@ std::vector<float> DDA(float x0, float y0, float x1, float y1)
     float x = x0;
     float y = y0;
 
-    if (std::abs(m) <= 1) // slope <= 1: x is independent variable
+    if (std::abs(m) <= 1) // slope <= 1: x is independent variable //abs =  absolute value
     {
         if (x0 > x1) { // ensure left to right drawing
             std::swap(x0, x1);
