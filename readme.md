@@ -9,7 +9,7 @@ Welcome to the **Computer Graphics and Multimedia (CSE 358)** lab repository. Th
 - **Semester**: Spring 2026
 - **Student Name**: Md. Azhar Uddin Abeer
 - **Student ID**: 0432320005101120
-- **Section**: 5B2
+- **Section**: 6B2
 
 ---
 
