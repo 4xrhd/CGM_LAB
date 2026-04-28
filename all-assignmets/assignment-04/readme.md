@@ -1,138 +1,117 @@
 
-# Lab 03: Drawing a Cyan Star on Yellow Background
+# Assignment 04: Interactive Color Animation & Keyboard Input
 
 **Course**  
 Computer Graphics & Multimedia Lab
 
 **Assignment**  
-Lab 03
+Assignment 04
 
 **Student**  
 Name: Md. Azhar Uddin Abeer  
 Student ID: 0432320005101120
 
 **Submission Date**  
-February 2025 – February 2026 (as per announcement)
+April 2026
 
 ## Objective
 
-Develop a modern OpenGL application using **GLFW** and **GLAD** that:
+Develop an interactive modern OpenGL application using **GLFW** and **GLAD** that demonstrates dynamic color interpolation and keyboard event handling:
 
-- Displays a **yellow** window background  
-- Renders exactly **one cyan star** constructed using triangles only  
-- Sets the window title to the full student ID: **0432320005101120**  
-- Closes the window when the user presses the key **`A`** (initial of your name)
+- **Color Animation**: The triangle color smoothly interpolates between **Cyan** (0, 1, 1) and **Magenta** (1, 0, 1) over time using a sine-based transition.
+- **Interactive State**:
+    - Holding **`W`**: Changes the triangle color to **White** temporarily.
+    - Pressing **`R`**: Changes the triangle color to **Red** permanently and stops the animation.
+- **Window Title**: Displays the student's ID suffix: **1120**.
+- **Exit Logic**: Closes the window when the user presses **`A`** (initial of the student's name) or **`ESC`**.
 
 ## Requirements Fulfilled
 
-- [x] Window background: **Yellow** (RGB: 1.0f, 1.0f, 0.0f, 1.0f)  
-- [x] One **cyan star** (0.0f, 1.0f, 1.0f) drawn using `GL_TRIANGLES` only  
-- [x] Window title: **0432320005101120**  
-- [x] Window closes on pressing **`A`** key  
-- [x] Uses **OpenGL 3.3 Core Profile** + GLFW + GLAD  
-- [x] Proper VAO / VBO usage  
-- [x] Clean, commented code structure  
-- [x] Includes screenshot (`output.png`)
+- [x] **Dynamic Animation**: Smooth interpolation between Cyan and Magenta.
+- [x] **Keyboard Interactivity**: 
+    - [x] Temporary color change (`W`).
+    - [x] Permanent state change (`R`).
+- [x] **Custom Exit Key**: Closes on `A`.
+- [x] **Modern Pipeline**: Uses OpenGL 3.3 Core Profile with custom shaders and VAO/VBO.
+- [x] **Documentation**: Clean code with student-specific identifiers.
+- [x] **Proof of Work**: Included GIF and Screenshot.
 
 ## Program Specifications
 
 | Property              | Value                                      |
 |-----------------------|--------------------------------------------|
 | Window size           | 800 × 600 pixels                           |
-| Background color      | Yellow (1.0f, 1.0f, 0.0f, 1.0f)           |
-| Star color            | Cyan   (0.0f, 1.0f, 1.0f)                 |
-| Window title          | 0432320005101120                           |
-| Rendering primitive   | `GL_TRIANGLES` via `glDrawArrays`          |
-| Exit key              | `A` (case insensitive in most implementations) |
+| Background color      | Dark Gray (0.1f, 0.1f, 0.1f, 1.0f)        |
+| Animation Colors      | Cyan ↔ Magenta                             |
+| Window title          | 1120                                       |
+| Rendering primitive   | `GL_TRIANGLES`                             |
+| Exit key              | `A` or `ESC`                               |
+| Special keys          | `W` (White), `R` (Red)                     |
 | OpenGL version        | 3.3 Core Profile                           |
-| Input method          | `glfwGetKey()` polling                     |
 
 ## Project Structure
 
 ```
-assignment-03/
-├── main.cpp          Main program (OpenGL + GLFW + GLAD)
-├── glad.c            GLAD source (generated)
-├── include/          Headers (glad/glad.h, glfw3.h, etc.)
-├── lib/              GLFW library files (if using local build)
-├── build/            Output directory for executable
-├── readme.md         This file
-└── output.png        Screenshot of running program
+assignment-04/
+├── main.cpp                Main program (Animation + Input Logic)
+├── glad.c                  GLAD source
+├── include/                Headers (glad.h, glfw3.h)
+├── lib/                    GLFW library files
+├── build/                  Executable output
+├── readme.md               This documentation
+├── output.png              Static screenshot
+└── assignment-04..gif      Recorded animation/interaction proof
 ```
 
 ## Build & Run Instructions
 
-### Linux (typical university lab environment)
+### Linux
 
 ```bash
-mkdir -p build
-
+# Compile
 g++ -Wall -std=c++17 \
     -I./include \
     main.cpp glad.c \
-    -o build/star \
+    -o build/main \
     -L./lib -lglfw -lGL -lX11 -lpthread -lXrandr -lXi -ldl
 
-./build/star
-```
-
-### Windows (MinGW / MSYS2)
-
-```bash
-g++ -std=c++17 main.cpp glad.c -o star.exe \
-    -Iinclude -Llib -lglfw3 -lopengl32 -lgdi32
-
-star.exe
+# Run
+./build/main
 ```
 
 ## Program Output
 
-The application displays:
+The application features a dark background where a central triangle cycles through colors. Pressing interaction keys modifies the rendering state in real-time.
 
-- Window title: **0432320005101120**  
-- Solid **yellow** background  
-- Centered **cyan star** constructed from triangles  
-- No flickering or rendering artifacts
+**Interaction Demo:**
+
+![Program Output](assignment-04..gif)  
+*GIF showing the Cyan-Magenta animation and keyboard interaction responses*
 
 **Screenshot:**
 
-![Program Output](output.png)  
-*Screenshot showing the yellow window with cyan star and correct title bar*
+![Static Output](output.png)  
+*Static view of the triangle in its default state*
 
 ## Key Techniques Implemented
 
-- GLFW window & OpenGL 3.3 Core context creation  
-- GLAD function loading  
-- Minimal vertex & fragment shaders (cyan color hardcoded)  
-- Single VAO + VBO for star geometry  
-- Star shape built entirely from triangles (no `GL_LINES`, no fan/strip shortcuts)  
-- Keyboard state checking with `glfwGetKey(GLFW_KEY_A)`  
-- Clean resource deallocation (`glDeleteProgram`, `glDeleteBuffers`, `glDeleteVertexArrays`, etc.)  
-- `glfwTerminate()` and window destruction on exit
+- **Uniform Color Updates**: Used `glUniform4f` to pass dynamically calculated colors to the fragment shader.
+- **Sine Interpolation**: Implemented `(sin(time) + 1.0) / 2.0` to create a smooth looping transition between two color vectors.
+- **Input Polling**: Used `glfwGetKey` for both momentary (holding `W`) and persistent (toggle `isRedPermanently`) state management.
+- **Resource Cleanup**: Proper destruction of VAO, VBO, and Shader Program upon exit.
 
 ## Learning Outcomes
 
-Through this assignment, I gained practical experience with:
-
-- Modern OpenGL setup (core profile, no fixed-function pipeline)  
-- Writing and linking simple GLSL shaders  
-- Vertex data management using VAO/VBO  
-- Constructing complex 2D shapes from basic triangles  
-- Basic real-time keyboard input handling in GLFW  
-- Structuring and documenting a small graphics project
+- Gained proficiency in **Uniforms** for real-time GPU data communication.
+- Learned to manage **application states** (permanent vs. temporary) based on user input.
+- Mastered **time-based animations** within the render loop.
+- Strengthened understanding of the **OpenGL 3.3 Core Profile** workflow.
 
 ## Submission Details
 
-- **Repository**: (to be updated with GitHub link)  
-- **Files included**:
-  - `main.cpp`  
-  - `readme.md` (this document)  
-  - `output.png` (proof of correct execution)  
+- **Student**: Md. Azhar Uddin Abeer  
+- **ID**: 0432320005101120
+- **Lab Instructor**: Any Chowdhury - AC  
 
-**Lab Instructor**: Any Chowdhury- AC  
-**Deadline**: 25 February 2026
-
-Thank you for reviewing my submission.
-
-Md. Azhar Uddin Abeer  
-0432320005101120
+---
+*Thank you for reviewing my Assignment 04 submission.*
