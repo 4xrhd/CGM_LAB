@@ -85,8 +85,8 @@ The application features a dark background where a central triangle cycles throu
 
 **Interaction Demo:**
 
-![Program Output](assignment-04.gif)   
-*GIF showing the Cyan-Magenta animation and keyboard interaction responses*
+<!-- ![Program Output](assignment-04.gif)   
+*GIF showing the Cyan-Magenta animation and keyboard interaction responses* -->
 
 <p align="center">
   <img src="assignment-04.gif" width="600" alt="Assignment 4 Demo">
