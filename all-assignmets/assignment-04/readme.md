@@ -85,13 +85,13 @@ The application features a dark background where a central triangle cycles throu
 
 **Interaction Demo:**
 
-![Program Output](assignment-04..gif)  
+![Program Output](assignment-04.gif)  
 *GIF showing the Cyan-Magenta animation and keyboard interaction responses*
 
 **Screenshot:**
 
-![Static Output](output.png)  
-*Static view of the triangle in its default state*
+<!-- ![Static Output](output.png)  
+*Static view of the triangle in its default state* -->
 
 ## Key Techniques Implemented
 
